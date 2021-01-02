@@ -10,12 +10,16 @@ from .models import Game, Player    # Import of Models - Database Schema
 # Ajax
 
 def updatescore(request):
-    if request.is_ajax and request.method == "GET":
+    try:
         activegame = Game.objects.latest('id')
         score1 = activegame.score_1
         score2 = activegame.score_2
-        return JsonResponse({"score1":score1,"score2":score2}, status = 200)
-    return JsonResponse({}, status = 400)
+        if request.is_ajax and request.method == "GET":
+            return JsonResponse({"score1":score1,"score2":score2}, status = 200)
+        else:
+            return JsonResponse({}, status = 400)
+    except Game.DoesNotExist:
+        return JsonResponse({}, status = 400)
 
 # Main Page - showing score and give navigation options
 
