@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'scoreapp/style.css' %}">
+    <title>SCOREBOARD</title>
+  </head>
+  <body>
+	<form action="{% url 'scoreapp:saveplayer' %}" method="POST">
+	{% csrf_token %}
+  	<div class="main">	
+			<div class="player">
+				<h1>Heim</h1>
+				<select class="selectplayer" onmousedown="if(this.options.length>5){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;" name="player1" id="player1">
+					{% for player in player_list %}
+					<option class="selectoptions" {% if player.id == active_game.player_1.id %}selected{% endif %} value="{{ player.id }}">{{ player.name }}</option>
+					{% endfor %}
+				</select>		
+			</div>
+			<div class="player">
+				<h1>Gast</h1>
+				<select class="selectplayer" onmousedown="if(this.options.length>5){this.size=5;}"  onchange='this.size=0;' onblur="this.size=0;" name="player2" id="player2">
+					{% for player in player_list %}
+					<option class="selectoptions" {% if player.id == active_game.player_2.id %}selected{% endif %} value="{{ player.id }}">{{ player.name }}</option>
+					{% endfor %}
+				</select>		
+			</div>	
+	</div>
+	<div class="saveplayerdiv">
+		<input type="hidden" id="game" name="game" value="{{ active_game.id }}">
+		<input class="saveplayer" type="submit" value="SAVE">
+	</div>
+	</form>
+  </body>
+</html>
+

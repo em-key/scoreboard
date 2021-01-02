@@ -1,0 +1,51 @@
+openapi: '3.0.2'
+info:
+  title: The Scoreboard REST Service
+  version: '1.0'
+  description: API to enable players to score
+servers:
+  - url: "http://0.0.0.0:9090/v1"
+paths:
+  /score:
+    post:
+      tags:
+      - scoreboard
+      summary: change players score
+      operationId: scoreboard_rest.post_change_players_score
+      parameters:
+        - in: query
+          name: player
+          required: true
+          schema:
+            type: boolean
+          description: >
+            Player1 = true<br>
+            Player2 = false
+        - in: query
+          name: points
+          required: true
+          schema:
+            type: integer
+            minimum: -10
+            maximum: 10
+            default: 1
+          description: number of points (-10 - 10)
+      responses:
+        '200':
+          description: score updated
+        '400':
+          description: bad request
+        '404':
+          description: internal error
+        '401':
+          description: Not authorized
+      security:
+        - api_key: []
+
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: X-Auth
+      in: header
+      x-apikeyInfoFunc: scoreboard_rest.apikey_auth

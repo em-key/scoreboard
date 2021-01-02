@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load scorenumber %}
+  {% load static %}
+  <script src="{% static 'scoreapp/jquery-3.5.1.min.js' %}"></script>
+  <script>
+    
+    var numbers = ['1', '2', '3', '4', '5'];
+    var i = 0;
+
+    function refreshscore(){
+      $("#score1").html(numbers[i]);
+      i++;
+      if(i>4){
+          i=0;
+      }
+    }
+    
+    $( document ).ready(function() {
+      refreshscore();
+      setInterval(() => {
+        refreshscore();
+      }, 1000);
+    });
+  </script>
+	<link rel="stylesheet" type="text/css" href="{% static 'scoreapp/style.css' %}">
+    <title>SCOREBOARD</title>
+  </head>
+  <body>
+    <div id="testid">
+        <h1 id="score1">SCORE1</h1>
+        <h1 id="socre2">SCORE2</h1>
+    </div>
+  </body>
+</html>
