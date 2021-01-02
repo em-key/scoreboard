@@ -21,6 +21,7 @@ hyperlink==20.0.1
 idna==2.10
 incremental==17.5.0
 inflection==0.5.1
+iniconfig==1.1.1
 isort==5.6.4
 itsdangerous==1.1.0
 Jinja2==2.11.2
@@ -29,7 +30,10 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 openapi-spec-validator==0.2.9
+packaging==20.8
 paho-mqtt==1.5.1
+pluggy==0.13.1
+py==1.10.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycodestyle==2.6.0
@@ -40,7 +44,10 @@ pylint==2.6.0
 pylint-django==2.3.0
 pylint-plugin-utils==0.6
 pyOpenSSL==20.0.1
+pyparsing==2.4.7
 pyrsistent==0.17.3
+pytest==6.2.1
+pytest-django==4.1.0
 pytz==2020.4
 PyYAML==5.3.1
 requests==2.25.1
