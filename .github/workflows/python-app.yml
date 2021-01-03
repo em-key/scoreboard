@@ -37,9 +37,8 @@ jobs:
       run: |
         python manage.py makemigrations
         python manage.py migrate
-    - name: Run tests
-      run: |
-        python manage.py check --deploy
-        python manage.py test
-        pytest
+    - name: Django Check Deploy
+      run: python manage.py check --deploy
+    - name: Django Custom tests
+      run: pytest
 
