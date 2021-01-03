@@ -1,10 +1,11 @@
 import os
 import sys
+import time
 import django
 import paho.mqtt.client as mqtt
 
 # append path that module can be found
-sys.path.append('../')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
 # the django setup needs access to the settings file
 os.environ.setdefault ("DJANGO_SETTINGS_MODULE", "scoreboard.settings_dev")
@@ -48,7 +49,16 @@ client.username_pw_set("scoreboard","mqtt!")
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("localhost", 1883, 60)
+CONNECTSTATUS = False
+while not CONNECTSTATUS:
+    print("Try to connect to MQTT Broker")
+    try:
+        client.connect("localhost", 1883, 60)
+        CONNECTSTATUS = True
+    except ConnectionRefusedError:
+        print("Connection refused - reconnect in 5sec")
+        time.sleep(5)
+
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
