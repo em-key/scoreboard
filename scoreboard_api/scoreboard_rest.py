@@ -6,7 +6,7 @@ from connexion.exceptions import OAuthProblem, ProblemException
 
 
 # append path that module can be found
-sys.path.append('../')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
 # the django setup needs access to the settings file
 os.environ.setdefault ("DJANGO_SETTINGS_MODULE", "scoreboard.settings_dev")
