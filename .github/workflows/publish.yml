@@ -3,7 +3,7 @@ on:
   release:
     types: [published]
 jobs:
-  main:
+  build_and_publish:
     runs-on: ubuntu-latest
     steps:
       -
@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: emkey0/scoreboard:latest
+          tags: ${{ steps.docker_meta.outputs.tags }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
