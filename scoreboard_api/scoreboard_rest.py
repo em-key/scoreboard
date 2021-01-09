@@ -20,7 +20,7 @@ from scoreapp.models import Game
 
 
 TOKEN_DB = {
-    '1234': {
+    os.environ.get("API_KEY"): {
         'uid': 1
     }
 }
@@ -47,7 +47,13 @@ def post_change_players_score(player: bool, points: int) -> str:
         ) from error
     return "success"
 
+# Setup Flask App
+scoreboard_rest = connexion.FlaskApp(__name__, specification_dir='./')
+scoreboard_rest.add_api('scoreboard_openapi.yml')
+
+# Setup application callable for WSGI
+application = scoreboard_rest.app
+
+# to run in devellopement where script is called directly
 if __name__ == '__main__':
-    app = connexion.FlaskApp(__name__, port=9090, specification_dir='./')
-    app.add_api('scoreboard_rest.openapi.yml', arguments={'title': 'Scoreboard Swagger API'})
-    app.run()
+    scoreboard_rest.run(port=8080)

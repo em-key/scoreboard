@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import logging
 import django
 import paho.mqtt.client as mqtt
 
@@ -12,6 +13,10 @@ os.environ.setdefault ("DJANGO_SETTINGS_MODULE", "scoreboard.settings_dev")
 django.setup ()
 
 from scoreapp.models import Game
+
+
+#init logging
+logging.basicConfig(filename='/var/log/mqtt/mqtt.log', level=logging.DEBUG, format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -43,25 +48,26 @@ def on_message(client, userdata, msg):
         game.score_2 = game.score_2 + points
     game.save()
 
+def on_disconnect(client, userdata, rc):
+    if rc != 0:
+        logging.warning("MQTT got disconnect with error code: " + str(rc))
+
 client = mqtt.Client(client_id="Scoreboard")
-client.username_pw_set("scoreboard","mqtt!")
+client.username_pw_set(os.environ.get("MQTT_USER"),os.environ.get("MQTT_PW"))
 
 client.on_connect = on_connect
 client.on_message = on_message
+client.on_disconnect = on_disconnect
 
 CONNECTSTATUS = False
 while not CONNECTSTATUS:
-    print("Try to connect to MQTT Broker")
     try:
-        client.connect("localhost", 1883, 60)
+        client.connect(os.environ.get("MQTT_SERVER"), int(os.environ.get("MQTT_PORT")), 60)
         CONNECTSTATUS = True
-    except ConnectionRefusedError:
-        print("Connection refused - reconnect in 5sec")
+        logging.info("MQTT Server reached")
+    except:
+        print("MQTT client setup failed - retry in 5sec")
+        logging.warning("MQTT Server could not be reached - retry in 5sec\n")
         time.sleep(5)
 
-
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
 client.loop_forever()

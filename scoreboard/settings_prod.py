@@ -28,7 +28,8 @@ with open('secretkey.txt') as f:
 DEBUG = False
 
 ALLOWED_HOSTS = ['.localhost',
-                 '127.0.0.1'
+                 '127.0.0.1',
+                 '0.0.0.0'
                 ]
 
 # Application definition
@@ -123,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 SILENCED_SYSTEM_CHECKS = ["security.W004","security.W008","security.W012","security.W016"]
