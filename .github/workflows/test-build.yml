@@ -1,4 +1,4 @@
-name: Test-Build-Publsh
+name: Test-Build
 
 on:
   push:

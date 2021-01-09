@@ -17,7 +17,8 @@ Also updates via REST API should be possible (learning purpose)
 
 # Installation - docker
 
-tbd -> Documents will be on docker hub
+Please find instructions on dockerhub
+https://hub.docker.com/r/emkey0/scoreboard 
 
 # Installation - native
 
