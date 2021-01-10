@@ -9,7 +9,7 @@ from connexion.exceptions import OAuthProblem, ProblemException
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
 
 # the django setup needs access to the settings file
-os.environ.setdefault ("DJANGO_SETTINGS_MODULE", "scoreboard.settings_dev")
+os.environ.setdefault ("DJANGO_SETTINGS_MODULE", "scoreboard.settings_prod")
 django.setup ()
 
 from scoreapp.models import Game
