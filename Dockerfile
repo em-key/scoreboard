@@ -57,7 +57,7 @@ ENV MQTT_PLAYER1='scoreboard/player1'
 ENV MQTT_PLAYER2='scoreboard/player2'
 ENV API='yes'
 ENV API_KEY='1234'
-ENV DJANGO_ALLOWED_HOSTS='["localhost", "*"]'
+ENV DJANGO_ALLOWED_HOSTS='localhost,*'
 
 # change user
 USER nginx

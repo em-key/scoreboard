@@ -27,7 +27,11 @@ with open('secretkey.txt') as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS")
+
+# Split env variable to list element
+allowed_host_list = [x.strip() for x in os.environ.get("DJANGO_ALLOWED_HOSTS").split(',')]
+
+ALLOWED_HOSTS = allowed_host_list
 
 # Application definition
 
