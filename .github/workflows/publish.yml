@@ -16,6 +16,9 @@ jobs:
         with:
           images: emkey0/scoreboard
       -
+        name: Django collectstatic
+        run: python manage.py collectstatic
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -

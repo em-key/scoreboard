@@ -24,8 +24,8 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("scoreboard/player1")
-    client.subscribe("scoreboard/player2")
+    client.subscribe(os.environ.get("MQTT_PLAYER1"))
+    client.subscribe(os.environ.get("MQTT_PLAYER2"))
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
@@ -40,10 +40,10 @@ def on_message(client, userdata, msg):
         print("error - invalid points value")
         return
 
-    if msg.topic=='scoreboard/player1':
+    if msg.topic==os.environ.get("MQTT_PLAYER1"):
         print("player1 " + str(points))
         game.score_1 = game.score_1 + points
-    elif msg.topic=='scoreboard/player2':
+    elif msg.topic==os.environ.get("MQTT_PLAYER2"):
         print("player2 " + str(points))
         game.score_2 = game.score_2 + points
     game.save()

@@ -51,6 +51,8 @@ ENV MQTT_SERVER='localhost'
 ENV MQTT_PORT='1883'
 ENV MQTT_USER=''
 ENV MQTT_PW=''
+ENV MQTT_PLAYER1='scoreboard/player1'
+ENV MQTT_PLAYER2='scoreboard/player2'
 ENV API='yes'
 ENV API_KEY='1234'
 

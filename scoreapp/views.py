@@ -92,7 +92,7 @@ def highscore(request):
     highscore_list = []
 
     for player in player_all:
-        wins = (Game.objects.filter(score_1__gt=F('score_2')).filter(player_1__id=player.id) | Game.objects.filter(score_2__gt=F('score_1')).filter(player_2__id=player.id)).count()
+        wins = (Game.objects.filter(score_1__gte=F('score_2')).filter(player_1__id=player.id) | Game.objects.filter(score_2__gte=F('score_1')).filter(player_2__id=player.id)).count()
         highscore_list.append({'player':player.name, 'wins':wins})
     highscore_list = sorted(highscore_list, key=itemgetter('wins'), reverse=True)
     context = {
