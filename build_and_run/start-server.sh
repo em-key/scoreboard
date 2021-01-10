@@ -17,7 +17,7 @@ python manage.py initadminuser
 
 if [ "$MQTT" = "yes" ]
 then
-    echo 'Start MQTT Client - send channel updates to scoreboard/player1 or scoreboard/player2'
+    echo "Start MQTT Client - send channel updates to $MQTT_PLAYER1 or $MQTT_PLAYER2"
     python scoreboard_mqtt/scoreboard_mqtt.py &
 fi
 
@@ -25,7 +25,7 @@ fi
 
 if [ "$API" = "yes" ]
 then
-    echo 'Start REST API - connect to swagger UI via exposed port 8080 /v1/ui'
+    echo "Start REST API - connect to swagger UI via exposed port 8081 /v1/ui"
     gunicorn --chdir ./scoreboard_api scoreboard_rest --bind 127.0.0.1:8020 --workers 3 --daemon
 fi
 

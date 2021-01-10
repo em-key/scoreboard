@@ -62,7 +62,7 @@ ENV API_KEY='1234'
 USER nginx
 
 # # Expose Ports / start server
-EXPOSE 9001
-EXPOSE 9002
+EXPOSE 8080
+EXPOSE 8081
 STOPSIGNAL SIGTERM
 CMD ["./build_and_run/start-server.sh"]
