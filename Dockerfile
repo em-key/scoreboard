@@ -21,6 +21,7 @@ COPY . /opt/app/scoreboard/
 WORKDIR /opt/app/scoreboard/
 RUN pip install -r requirements.txt
 RUN python manage.py collectstatic
+RUN mkdir data
 
 # Remove not required build packages
 RUN apk del .build-deps

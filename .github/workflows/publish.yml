@@ -16,9 +16,6 @@ jobs:
         with:
           images: emkey0/scoreboard
       -
-        name: Create Data folder for sqlite
-        run: mkdir data
-      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
