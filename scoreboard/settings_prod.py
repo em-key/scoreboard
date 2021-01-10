@@ -29,7 +29,7 @@ DEBUG = False
 
 
 # Split env variable to list element
-allowed_host_list = [x.strip() for x in os.environ.get("DJANGO_ALLOWED_HOSTS").split(',')]
+allowed_host_list = [x.strip() for x in str(os.environ.get("DJANGO_ALLOWED_HOSTS")).split(',')]
 
 ALLOWED_HOSTS = allowed_host_list
 
