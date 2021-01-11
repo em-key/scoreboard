@@ -24,6 +24,7 @@ https://hub.docker.com/r/emkey0/scoreboard
 
 ## webapp
 - Install required packages -> see requirements.txt
+- Set ENV variable: DJANGO_ALLOWED_HOSTS (comma separated)
 - Run Django app
 - Create Django Superuser
 

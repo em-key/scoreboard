@@ -14,10 +14,6 @@ django.setup ()
 
 from scoreapp.models import Game
 
-# from scoreboard import settings
-# from django.core.management import setup_environ
-# setup_environ(settings)
-
 
 TOKEN_DB = {
     os.environ.get("API_KEY"): {
