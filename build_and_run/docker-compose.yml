@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+
+  # Simple MQTT Broker
+  mqttbroker:
+    image: eclipse-mosquitto
+    container_name: mqttbroker
+    restart: always
+    ports:
+      - "1883:1883"
+    networks:
+      - scoreboard
+
+  # Webapp
+  app:
+    image: emkey0/scoreboard
+    container_name: scoreboard
+    restart: always
+    ports:
+      - "80:8080"
+      - "81:8081"
+    environment:
+      - MQTT=yes
+      - MQTT_SERVER=mqttbroker
+      - MQTT_USER=scoreboard
+      - MQTT_PW=scoreboard
+    networks:
+      - scoreboard
+    volumes:
+      # - /opt/app/scoreboard/data/       # unspecific volume created default path (not working when docker-compose down-up)
+      - .data/:/opt/app/scoreboard/data/  # DB at specific location (don't forget to give permissions to nginx user uid=100 gid=101)
+      
+networks:
+  scoreboard:
+    name: scoreboard
