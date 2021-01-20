@@ -11,6 +11,7 @@
 body {
   background-color: black;
   color: white;
+  overflow: hidden;
 }
 
 /* Container for all content */
