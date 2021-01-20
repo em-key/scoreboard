@@ -1,0 +1,11 @@
+MQTT='yes'
+MQTT_SERVER='localhost'
+MQTT_PORT='1883'
+MQTT_USER=''
+MQTT_PW=''
+MQTT_PLAYER1='scoreboard/player1'
+MQTT_PLAYER2='scoreboard/player2'
+DJANGO_ALLOWED_HOSTS='localhost,*'
+API='yes'
+API_KEY='1234'
+

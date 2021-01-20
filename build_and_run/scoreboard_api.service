@@ -1,0 +1,21 @@
+[Unit]
+Description = scoreboard_api
+After = network-online.target
+
+[Service]
+Type=forking
+User=markus
+Group=markus
+EnvironmentFile=/home/markus/scoreboard/build_and_run/systemd_settings
+ExecStartPre=+/bin/mkdir -p /var/run/scoreboard_api
+ExecStartPre=+/bin/chown -R markus:markus /var/run/scoreboard_api
+WorkingDirectory=/home/markus/scoreboard/
+ExecStart=/home/markus/scoreboard/venv/bin/gunicorn --pid /var/run/scoreboard_api/scoreboard_api.pid --daemon --bind 127.0.0.1:8020 --chdir ./scoreboard_api scoreboard_rest
+PIDFile=/var/run/scoreboard_api/scoreboard_api.pid
+PrivateTmp = true
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=always
+
+[Install]
+WantedBy = multi-user.target

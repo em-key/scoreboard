@@ -1,0 +1,16 @@
+[Unit]
+Description = scoreboard_mqtt
+After = network-online.target
+
+[Service]
+Type=simple
+User=markus
+Group=markus
+EnvironmentFile=/home/markus/scoreboard/build_and_run/systemd_settings
+WorkingDirectory=/home/markus/scoreboard
+ExecStart=/home/markus/scoreboard/venv/bin/python scoreboard_mqtt/scoreboard_mqtt.py
+PrivateTmp = true
+Restart=always
+
+[Install]
+WantedBy = multi-user.target
