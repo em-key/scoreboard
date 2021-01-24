@@ -52,6 +52,7 @@ https://hub.docker.com/r/emkey0/scoreboard
 - Manage avaialbe players in "Scoreboard Admin Panel" (Slightly modified Django Admin)
 - Change players of active game
 - Check highscore table
+- updada score via "/controller" webview
 
 # Planned features
 - build custom player mangagment page based on django forms
