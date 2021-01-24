@@ -136,6 +136,13 @@ h2 {
 	white-space: nowrap;
 }
 
+h3 {
+	font-size: 3vmin;
+	margin-bottom: 0px;
+	font-family: Arial;
+	text-transform: uppercase;
+}
+
 /* classes to create 7-segment font in a nice way */
 
 .scorecontainer {
@@ -242,4 +249,37 @@ h2 {
 
 .tablescore {
 	text-align: center;
+}
+
+
+/* controller buttons */
+
+.scorebutton {
+	height: 30vmin;
+	margin: 5vmin;
+	font-size: 25vmin;
+	text-align: center;
+	line-height: 30vmin;
+	border-style: solid;
+	border-color: black;
+}
+
+.scorebutton:hover {
+	border-style: solid;
+	border-color: rgb(124, 123, 123);
+	opacity: 0.8;
+}
+
+.scorebutton:active {
+	border-style: solid;
+	border-color: rgb(124, 123, 123);
+	opacity: 0.5;
+}
+
+.scoreplus {
+	background-color: green;
+}
+
+.scoreminus {
+	background-color: red;
 }

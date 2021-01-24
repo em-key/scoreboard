@@ -21,6 +21,23 @@ def updatescore(request):
     except Game.DoesNotExist:
         return JsonResponse({}, status = 400)
 
+
+def scorechange(request):
+    try:
+        activegame = Game.objects.latest('id')
+        score1 = activegame.score_1
+        score2 = activegame.score_2
+        if request.is_ajax and request.method == "POST":
+            points = int(request.POST.get("points"))
+            if request.POST.get("player") == "1":
+                activegame.score_1 = score1 + points
+            elif request.POST.get("player") == "2":
+                activegame.score_2 = score2 + points
+            activegame.save()
+            return JsonResponse({}, status = 200)
+    except Game.DoesNotExist:
+        return JsonResponse({}, status = 400)
+
 # Main Page - showing score and give navigation options
 
 def index(request):
@@ -99,3 +116,17 @@ def highscore(request):
         'highscore_list': highscore_list
     }
     return render(request, 'scoreapp/highscore.html',context)
+
+
+# Controller page
+
+def controller(request):
+    try:
+        activegame = Game.objects.latest('id')    # Get active/latest game
+    except Game.DoesNotExist:
+        newgame(request)
+        activegame = Game.objects.latest('id')
+    context = {
+            'active_game': activegame,
+        }
+    return render(request, 'scoreapp/controller.html',context)

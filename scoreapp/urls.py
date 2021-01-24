@@ -10,5 +10,7 @@ urlpatterns = [
     path('settings', views.settings, name='settings'),                  # Settings page
     path('saveplayer', views.saveplayer, name='saveplayer'),            # Form handler to save players
     path('highscore', views.highscore, name='highscore'),               # Highscore page
+    path('controller', views.controller, name='controller'),            # Controller page
     path('ajax/updatescore', views.updatescore, name='updatescore'),    # Ajax Update Score
+    path('ajax/scorechange', views.scorechange, name='scorechange'),    # Change score via Ajax
 ]
