@@ -71,3 +71,9 @@ class TestApplication(TestCase):
         client = Client()
         response = client.get('/saveplayer')
         self.assertEqual(response.status_code, 302)
+
+    def test_controller(self):
+        client = Client()
+        response = client.get('/controller')
+        self.assertEqual(response.status_code, 200)
+        
