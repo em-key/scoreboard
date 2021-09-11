@@ -10,8 +10,8 @@ click==7.1.2
 clickclick==20.10.2
 connexion==2.7.0
 constantly==15.1.0
-cryptography==3.3.1
-Django==3.1.4
+cryptography==3.3.2
+Django==3.1.12
 django-generate-secret-key==1.0.2
 flake8==3.8.4
 Flask==1.1.2
@@ -25,7 +25,7 @@ inflection==0.5.1
 iniconfig==1.1.1
 isort==5.6.4
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 jsonschema==3.2.0
 lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
@@ -50,7 +50,7 @@ pyrsistent==0.17.3
 pytest==6.2.1
 pytest-django==4.1.0
 pytz==2020.4
-PyYAML==5.3.1
+PyYAML==5.4
 requests==2.25.1
 rfc3986==1.4.0
 service-identity==18.1.0
@@ -61,7 +61,7 @@ swagger-ui-bundle==0.0.8
 toml==0.10.2
 Twisted==20.3.0
 txaio==20.12.1
-urllib3==1.26.2
+urllib3==1.26.4
 Werkzeug==1.0.1
 wrapt==1.12.1
 zope.interface==5.2.0
